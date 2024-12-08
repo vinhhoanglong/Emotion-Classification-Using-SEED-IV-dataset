@@ -21,6 +21,7 @@ python -m venv .venv
 ```
 
 ### Evaluation
+with params model, choice = ['dense', 'lstm', '3dconv']
 ```bash
-.venv/bin/python main.py 
+.venv/bin/python main.py --model=dense
 ```
