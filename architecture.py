@@ -1,4 +1,3 @@
-# define some model to test with the data
 import tensorflow as tf
 from tensorflow.keras import activations
 
