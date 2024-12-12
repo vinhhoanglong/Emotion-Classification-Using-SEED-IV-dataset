@@ -27,27 +27,26 @@ labels = {0: 'neutral', 1: 'sad', 2: 'fear', 3: 'happy'}
 y = np.array(session1_label * 15 + session2_label * 15 + session3_label * 15)
 
 print(y.shape)
-y_loso = np.reshape(y, (3,15,24))
-print(y_loso.shape)
 
-X = _X.transpose(0, 5, 1,2,3,4)
-print(X.shape)
-X = X.reshape(X.shape[0], X.shape[1], np.prod(X.shape[2:]))
-print(X.shape)
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42)
-
-print(X.shape[1:])
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--model", type=str, required=True, choices=["dense", "3dconv", "lstm"],
     help="Model architecture to use: 'dense' or '3dconv' or 'lstm'"
 )
+
+
+
+
 args = parser.parse_args()
 
 if args.model == "dense":
+    X = _X.transpose(0, 5, 1,2,3,4)
+    print(X.shape)
+    X = X.reshape(X.shape[0], X.shape[1], np.prod(X.shape[2:]))
+    print(X.shape)
+    X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)
     model = dense
 elif args.model == "3dconv":
     X = _X.transpose(0, 5, 2,3, 4, 1)[:,:,:,:,:,:]
